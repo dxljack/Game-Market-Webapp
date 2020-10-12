@@ -1,0 +1,10 @@
+pandas
+requests
+datetime
+pip
+gunicorn
+flask
+Jinja2
+matplotlib
+sklearn
+pickle

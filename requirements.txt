@@ -1,0 +1,13 @@
+pandas
+requests
+datetime
+pip
+gunicorn
+flask
+Jinja2
+matplotlib
+numpy
+scipy
+pandas
+scikit_learn==0.18.2
+pickle

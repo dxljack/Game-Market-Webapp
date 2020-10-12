@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    /* Set height of body and the document to 100% */
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial;
+    }
+
+    /* Style tab links */
+    .tablink {
+      background-color: #555;
+      color: white;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 25%;
+    }
+
+    .tablink:hover {
+      background-color: #777;
+    }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+      color: white;
+      display: none;
+      padding: 100px 20px;
+      height: 100%;
+    }
+
+    #About {
+      background-color: black;
+      background-image: url('/static/img/image.jpg');
+    }
+
+    #Analysis-and-Visualization {
+      background-color: black;
+      background-image: url('/static/img/image.jpg');
+    }
+
+    #Developer-Portal {
+      background-color: black;
+      background-image: url('/static/img/image.jpg');
+    }
+
+    #Gamer-Island {
+      background-color: black;
+      background-image: url('/static/img/image.jpg');
+    }
+
+    #predictor_result {
+      padding: 20px 20px;
+    }
+
+    #recommender_result {
+      padding: 20px 20px;
+    }
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <button class="tablink" onclick="openPage('About', this, 'darkgray')" id="defaultOpen">About</button>
+  <button class="tablink" onclick="openPage('Analysis-and-Visualization', this, 'darkgray')">Analysis &
+    Visualization</button>
+  <button class="tablink" onclick="openPage('Developer-Portal', this, 'darkgray')">Developer Portal</button>
+  <button class="tablink" onclick="openPage('Gamer-Island', this, 'darkgray')">Gamer Island</button>
+
+  <div id="About" class="tabcontent">
+    <h3>About</h3>
+    <p>Introduce what the project is all about.</p>
+  </div>
+
+  <div id="Analysis-and-Visualization" class="tabcontent">
+    <h3>Main Analysis and Visualization</h3>
+    <p>Let's tell a story and show some cool plots.</p>
+  </div>
+
+  <div id="Developer-Portal" class="tabcontent">
+    <h3>Game Sales Prediction</h3>
+    <p>Wondering about whether or not your game will sell well? Try it out on my predictive model.</p>
+    <!-- <form method='post' action="index"> -->
+    <form method='post' action="" id="predictor_form">
+      <label for="platform"></label>
+      <select id="platform" name="platform">
+        <option disabled selected value> -- select a Platform -- </option>
+        <option value="PC">PC</option>
+        <option value="PS4">PlayStation 4</option>
+        <option value="XOne">Xbox One</option>
+        <option value="NS">Nintendo Switch</option>
+      </select>
+      <label for="genre"></label>
+      <select id="genre" name="genre">
+        <option disabled selected value> -- select a Genre -- </option>
+        <option value="Shooter">Shooter</option>
+        <option value="Action">Action</option>
+        <option value="Misc">Misc</option>
+        <option value="Platform">Platform</option>
+        <option value="Sports">Sports</option>
+        <option value="Role-Playing">Role-Playing</option>
+        <option value="Racing">Racing</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Fighting">Fighting</option>
+        <option value="Simulation">Simulation</option>
+        <option value="Puzzle">Puzzle</option>
+        <option value="Strategy">Strategy</option>
+        <option value="Action-Adventure">Action-Adventure</option>
+        <option value="Party">Party</option>
+        <option value="Music">Music</option>
+        <option value="MMO">MMO</option>
+        <option value="Visual Novel">Visual Novel</option>
+        <option value="Sandbox">Sandbox</option>
+        <option value="Board Game">Board Game</option>
+        <option value="Education">Education</option>
+      </select>
+      <label for="publisher"></label>
+      <select id="publisher" name="publisher">
+        <option disabled selected value> -- select a Publisher -- </option>
+        <option value="Nintendo">Nintendo</option>
+        <option value="Sega">Sega</option>
+        <option value="Electronic Arts">Electronic Arts</option>
+        <option value="Activision">Activision</option>
+        <option value="Sony Computer Entertainment">Sony Entertainment</option>
+        <option value="Ubisoft">Ubisoft</option>
+        <option value="Microsoft">Microsoft</option>
+        <option value="Konami">Konami</option>
+        <option value="Capcom">Capcom</option>
+        <option value="THQ">THQ</option>
+        <option value="Atari">Atari</option>
+        <option value="Square Enix">Square Enix</option>
+        <option value="Rockstar Games">Rockstar Games</option>
+        <option value="Namco">Namco</option>
+        <option value="Acclaim Entertainment">Acclaim Entertainment</option>
+        <option value="Bandai">Bandai</option>
+        <option value="Hudson Soft">Hudson Soft</option>
+        <option value="Bethesda Softworks">Bethesda Softworks</option>
+        <option value="LucasArts">LucasArts</option>
+      </select>
+      <label for="critic_score"></label>
+      <input type="text" id="critic_score" name="critic_score" placeholder="-- enter a Rating --"
+        style="text-align: center">
+      <br>
+      <br>
+      <!-- <input type="submit" value="Submit"> -->
+      <button type="button" class="predictor_button" onclick="predictorSubmit()">Submit 👆</button>
+    </form>
+    <div id="predictor_result"></div>
+  </div>
+
+  <div id="Gamer-Island" class="tabcontent">
+    <h3>Game Recommendation</h3>
+    <p>Wondering about which game to play next? Try it out on my recommender system.</p>
+    <form method='post' action="" id="recommender_form">
+      <label for="platform_rec"></label>
+      <select id="platform_rec" name="platform_rec">
+        <option disabled selected value> -- select a Platform -- </option>
+        <option value="PC">PC</option>
+        <option value="PS4">PlayStation 4</option>
+        <option value="XOne">Xbox One</option>
+        <option value="NS">Nintendo Switch</option>
+      </select>
+      <label for="name"></label>
+      <input type="text" id="name" name="name" placeholder="-- enter a Game Name --" style="text-align: center">
+      <br>
+      <br>
+      <button type="button" class="recommender_button" onclick="recommenderSubmit()">Submit 👆</button>
+    </form>
+    <div id="recommender_result"></div>
+  </div>
+
+  <script>
+    function openPage(pageName, elmnt, color) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+      elmnt.style.backgroundColor = color;
+    }
+
+    // take variables from dropdown boxes, creating javascript objects, 
+    // send ajax post request to predictor and then put data into json format
+    function predictorSubmit() {
+      var platform = $('#platform').val();
+      var publisher = $('#publisher').val();
+      var genre = $('#genre').val();
+      var critic_score = $('#critic_score').val();
+      var result = { platform, genre, publisher, critic_score };
+      $.ajax
+        ({
+          type: "POST",
+          url: "predictor",
+          contentType: 'application/json',
+          data: JSON.stringify(result),
+          success: function (data) {
+            document.getElementById('predictor_result').innerText = "Based on our prediction, your game sales will likely be: \n\n" + data + " million units";
+          }
+        });
+    }
+
+    function recommenderSubmit() {
+      var platform_rec = $('#platform_rec').val();
+      var name = $('#name').val();
+      var result = { platform_rec, name };
+      $.ajax
+        ({
+          type: "POST",
+          url: "recommender",
+          contentType: 'application/json',
+          data: JSON.stringify(result),
+          success: function (data) {
+            document.getElementById('recommender_result').innerText = "Based on our recommendation, here is a list of games you might like: \n\n" + data;
+          }
+        });
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+
+
+  </script>
+
+</body>
+
+</html>
