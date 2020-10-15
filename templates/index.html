@@ -87,13 +87,12 @@
     <h4>The main objective of this project is to explore and analyze the current video game market from both
       perspectives of developer and consumer.</h4>
     <ol>
-      <li> As game developers, the obvious question to ask is what genre of game should they make, on which platform,
-        via which publisher and etc, in order to achieve high profitability.<br>
-        In short, developers probably would like to make sure that their game sell well after release.<br><br></li>
-      <li> As consumers/gamers, the obvious question to ask is which game should they play next within their invested
-        platforms based on their preference.<br>
-        In short, gamers probably would like to play games similar to what they already played on their current
-        platforms.<br><br></li>
+      <li> For game developers, the question I would like to solve is what genre of games should they make, on which
+        platform,
+        via which publisher and etc, in order to achieve high profitability.<br><br></li>
+      <li> For consumers/gamers, the question I would like to solve is which game should they play next within their
+        invested
+        platforms based on the game content and their preference.<br><br></li>
     </ol>
 
     <h4>There are two datasets used in this project.</h4>
@@ -131,9 +130,9 @@
           <option value="2">Yearly Game Sales</option>
         </select>
       </form>
-      <img class="plots" src='/static/plots/console-sales.png' height="297" width="392" />
+      <img class="plots" src='/static/plots/hardware_sales.png' height="297" width="392" />
 
-      <form method="" action="" name="bokeh">
+      <form method="" action="" name="bokeh_genre">
         <select id="top5_genres">
           <option value="0" selected>Top5 genres on PS4</option>
           <option value="1">Top5 genres on XOne</option>
@@ -141,9 +140,9 @@
           <option value="3">Top5 genres on PC</option>
         </select>
       </form>
-      <img class="bokeh" src='/static/top5_genres/genres_ps4.jpg' height="300 width=" 250" />
+      <img class="bokeh_genre" src='/static/top5_genres/genres_ps4.jpg' height="300 width=" 250" />
 
-      <form method="" action="" name="bokeh1">
+      <form method="" action="" name="bokeh_publisher">
         <select id="top5_publishers">
           <option value="0" selected>Top5 publishers on PS4</option>
           <option value="1">Top5 publishers on XOne</option>
@@ -151,7 +150,7 @@
           <option value="3">Top5 publishers on PC</option>
         </select>
       </form>
-      <img class="bokeh1" src='/static/top5_publishers/publishers_ps4.jpg' height="300 width=" 250" />
+      <img class="bokeh_publisher" src='/static/top5_publishers/publishers_ps4.jpg' height="300 width=" 250" />
 
     </div>
 
@@ -175,7 +174,7 @@
     <ul>
       <li>I would like to find the most popular genres and publishers for each platform.<br><br></li>
       <li>Then we can advise the developers
-        to create certain genre of games and publish via some particular publishers for
+        to make certain genre of games and publish via some particular publishers for
         maximizing profitability.<br><br></li>
       <li>The two addtional plots shows the top5 genres and top5 publishers for each platform.<br></li>
     </ul>
@@ -208,7 +207,8 @@
     <h1>Game Sales Prediction</h1>
     <p>
     <h4>Developers, wondering about whether or not your game will sell well? Try it out on my predictive model.</h4>
-    Next let's talk about modeling.
+    Next let's talk about modeling. This is where I want to provide a solution for the developers by connecting all the
+    pieces together.<br>
 
     <ul>
       <li>To start, I will briefly mention the data processing step.<br>
@@ -223,6 +223,7 @@
       <li>The finished product is a predictive indicator on what the game sales will be based on platform, genre,
         publisher and rating.<br>
         I included rating under the assumption that highly rated games tend to sell well.<br></li>
+      Now developers can actually see the differences among different choices they make.
     </ul>
     </p>
     <!-- <form method='post' action="index"> -->
@@ -299,17 +300,19 @@
     <h4>Gamers, wondering about which game to play next? Try it out on my recommender system.</h4>
     Finally, let's not forget our dear consumers, the gamers.<br>
     <ul>
-      <li>Another important aspect is how do different platforms keep their players satisfied and stay within their
-        current
-        platform?<br><br>
+      <li>Another important aspect to consider is how do players know which game to play next within their
+        current platform?<br>
+        This also motivates another business question, how does each platform keep their players satisfied and stay
+        within their current platforms?
+        <br><br>
       </li>
-      <li>With the help of our solution provided to the developers, more popular games will be release on each platform
-        post
-        prediciton to attract more players for higher sales.<br>
-        As a result, gamers will constantly get recommendations on their next, even next next game.<br><br></li>
+      <li>With the help of our solution provided to the developers, more popular games will be released on each platform
+        post prediciton to attract more players for higher sales.<br>
+        As a result, gamers will have access to a large collection of predicted popular games.<br><br></li>
       <li>The finished product is a content based game recomendation system built using jaccard similarity, it suggests
-        top 10
-        games to corresponding player.<br></li>
+        top 10 games to corresponding player.<br>
+      Notice that for each platform, the results returned are different.
+      </li>
     </ul>
 
     </p>
@@ -416,7 +419,7 @@
 
     $('#top5_genres').change(function () {
       var val = parseInt($('#top5_genres').val());
-      $('.bokeh').attr("src", genresList[val]);
+      $('.bokeh_genre').attr("src", genresList[val]);
     });
 
     // change image accoring dropdown box
@@ -429,7 +432,7 @@
 
     $('#top5_publishers').change(function () {
       var val = parseInt($('#top5_publishers').val());
-      $('.bokeh1').attr("src", genresList[val]);
+      $('.bokeh_publisher').attr("src", publishersList[val]);
     });
 
 
