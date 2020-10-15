@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 from threading import Thread
-from flask import Flask,render_template,request,redirect
+import io
+from flask import Flask,render_template,request,redirect, Response
 import simplejson as json
 import requests
 import datetime
@@ -18,14 +19,32 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
+from bokeh.io import output_file, show
+from bokeh.models import ColumnDataSource, Legend
+from bokeh.palettes import Category20
+from bokeh.plotting import figure
+from bokeh.models import CustomJS, Dropdown, Select
+from bokeh.embed import components
+
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import *
+from wordcloud import WordCloud
+import seaborn as sns
+import networkx as nx
+
 app = Flask(__name__)
 
 app.pred={}
 app.rec={}
+app.genre={}
+app.publisher={}
+
 # Load pipe_rf from saved predictive_model
 pipe_rf = pickle.load(open('predictive_model.sav', 'rb'))
 # Load df_rec from saved recommender_dataframe
 df_rec = pd.read_pickle('recommender_dataframe')
+# Load df_model from saved visual_dataframe
+df_model = pd.read_pickle('visual_dataframe')
 
 # Compute jaccard similarity
 def get_jaccard_sim(str1, str2): 
@@ -43,7 +62,7 @@ def get_recommendation(name, platform):
    for k in game_desc.keys():
       rec_dict[k] = get_jaccard_sim(game_desc[name][0], game_desc[k][0])
    sort_dict = sorted(rec_dict.items(), key=lambda x: x[1], reverse=True)
-   return [tuple[0] for tuple in sort_dict[1:6]]
+   return [tp[0] + "," + " sim_score: " + str(round(tp[1],2)) for tp in sort_dict[1:11]]
 
 @app.route('/')   
 def index():
@@ -66,5 +85,34 @@ def recommend():
    str_rec = "\n".join(rec)
    return str_rec
 
+# @app.route('/graph1', methods=['POST'])
+# def graph():
+#    # if request.method == 'POST':
+#    app.genre['bokeh_plot'] = request.form['bokeh_plot']
+#    app.genre['bokeh_plot'] = df_model[df_model['Platform']== app.genre['bokeh_plot'][3:]]
+#    app.genre['bokeh_plot'] = app.genre['bokeh_plot'].groupby('Genre')['Global_Sales'].sum().sort_values(ascending=False).head(5)
+
+#    genres = app.genre['bokeh_plot'].index.values.tolist()
+#    sales = app.genre['bokeh_plot'].values.tolist()
+
+#    source = ColumnDataSource(data=dict(genres=genres, sales=sales, color=Category20[5]))
+
+#    p = figure(x_range=genres, y_range=[0,300], plot_height=500, title="Top5 genres on app.genre['bokeh_plot']",
+#             toolbar_location=None, tools="")
+
+#    p.vbar(x='genres', top='sales', width=0.75, color='color', legend="genres", source=source)
+
+#    p.xgrid.grid_line_color = None
+#    p.legend.orientation = "vertical"
+#    p.legend.location = "top_right"
+
+#    script, div = components(p)
+#    return render_template('graph1.html', script=script, div=div)
+
+# @app.route('/graph2', methods=['POST'])
+# def graph():
+#    # if request.method == 'POST':
+#    app.vars['symbol'] = request.form['symbol']
+
 if __name__ == '__main__':
-   app.run(port=33507)
+   app.run(port=8000)

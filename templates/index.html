@@ -68,9 +68,9 @@
     #recommender_result {
       padding: 20px 20px;
     }
-
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 </head>
 
 <body>
@@ -82,18 +82,149 @@
   <button class="tablink" onclick="openPage('Gamer-Island', this, 'darkgray')">Gamer Island</button>
 
   <div id="About" class="tabcontent">
-    <h3>About</h3>
-    <p>Introduce what the project is all about.</p>
+    <h1>About</h1>
+    <p>
+    <h4>The main objective of this project is to explore and analyze the current video game market from both
+      perspectives of developer and consumer.</h4>
+    <ol>
+      <li> As game developers, the obvious question to ask is what genre of game should they make, on which platform,
+        via which publisher and etc, in order to achieve high profitability.<br>
+        In short, developers probably would like to make sure that their game sell well after release.<br><br></li>
+      <li> As consumers/gamers, the obvious question to ask is which game should they play next within their invested
+        platforms based on their preference.<br>
+        In short, gamers probably would like to play games similar to what they already played on their current
+        platforms.<br><br></li>
+    </ol>
+
+    <h4>There are two datasets used in this project.</h4>
+    <ul>
+      <li>The first dataset was obtained from https://www.kaggle.com/ashaheedq/video-games-sales-2019, it contains a
+        list of video games with sales, critic and users score.<br><br></li>
+      <li>The second dataset was scraped from https://www.vgchartz.com, it contains the hardware unit sales of current
+        generation consoles.<br><br></li>
+      <li>Check the pictures below for a sneak peek.<br></li>
+    </ul>
+    </p>
+    <form method="" action="" name="datasets">
+      <select id="switchImage">
+        <option value="0" selected>Dataset1</option>
+        <option value="1">Dataset2_1</option>
+        <option value="2">Dataset2_2</option>
+      </select>
+    </form>
+    <img class="datasets" src='/static/datasets/dataset1.jpg' />
   </div>
 
   <div id="Analysis-and-Visualization" class="tabcontent">
-    <h3>Main Analysis and Visualization</h3>
-    <p>Let's tell a story and show some cool plots.</p>
+    <h1>Main Analysis and Visualization</h1>
+    <p>
+    <h4>To better understand the proposed problems. Let's first take a look at the current video game market.</h4>
+    </p>
+    <p>There are mainly four different platforms for the current generation, namely the PS4, XOne, NS and PC.<br>
+      Here are some plots showing the current market share in terms of hardware sales and game sales.<br>
+    </p>
+    <div style="display: flex;">
+      <form method="" action="" name="plots">
+        <select id="changeImage">
+          <option value="0" selected>Total Console Sales</option>
+          <option value="1">Total Game Sales</option>
+          <option value="2">Yearly Game Sales</option>
+        </select>
+      </form>
+      <img class="plots" src='/static/plots/console-sales.png' height="297" width="392" />
+
+      <form method="" action="" name="bokeh">
+        <select id="top5_genres">
+          <option value="0" selected>Top5 genres on PS4</option>
+          <option value="1">Top5 genres on XOne</option>
+          <option value="2">Top5 genres on NS</option>
+          <option value="3">Top5 genres on PC</option>
+        </select>
+      </form>
+      <img class="bokeh" src='/static/top5_genres/genres_ps4.jpg' height="300 width=" 250" />
+
+      <form method="" action="" name="bokeh1">
+        <select id="top5_publishers">
+          <option value="0" selected>Top5 publishers on PS4</option>
+          <option value="1">Top5 publishers on XOne</option>
+          <option value="2">Top5 publishers on NS</option>
+          <option value="3">Top5 publishers on PC</option>
+        </select>
+      </form>
+      <img class="bokeh1" src='/static/top5_publishers/publishers_ps4.jpg' height="300 width=" 250" />
+
+    </div>
+
+    <ul>
+      <li>From early observations, for gaming consoles, we can see that PS4 is clearnly taking the lead in both hardware
+        sales and game sales.<br>
+        This suggests that the platform itself has a very strong player base. It is only logical
+        for developers to stay with the more popular platform.<br>
+        And of course, this is not the whole story.<br><br></li>
+      <li>Notice that we didnot take PC sales into account for hardware sales, this is because not everyone purchases PC
+        for gaming.<br>
+        However, we are able to explore game sales for PC. Surprisingly, from 2013 to 2018, total PC game
+        sales surpassed console game sales.<br>
+        In particular, there was a spike in 2014 PC game sales. Detailed reason is
+        yet to be determined, but multiple articles from 2014 and 2015 confirmed my discovery.<br><br></li>
+      <li>Overall, I am more confident to say that PC and PS4 should probably be the first choice for developers to
+        develop and release their games on.<br></li>
+    </ul>
+    <p>Now that we have found the prefered platforms for our developers, what's next?<br>
+
+    <ul>
+      <li>I would like to find the most popular genres and publishers for each platform.<br><br></li>
+      <li>Then we can advise the developers
+        to create certain genre of games and publish via some particular publishers for
+        maximizing profitability.<br><br></li>
+      <li>The two addtional plots shows the top5 genres and top5 publishers for each platform.<br></li>
+    </ul>
+    </p>
+
+    <!-- <form id='visual_Plot' method='post' action='graph1'>
+      <label for="bokeh_Plot"></label>
+      <select id="bokeh_plot" onChange=selectChange(this.value)>
+        <option disabled selected value> -- select a plot -- </option>
+        <option value="df_pc">Top5 genres on PC</option>
+        <option value="df_ps4">Top5 genres on PS4</option>
+        <option value="df_xone">Top5 genres on XOne</option>
+        <option value="df_ns">Top5 genres on NS</option>
+      </select>
+    </form> -->
+    <!-- 
+    <form id='visual' method='post' action='graph2'>
+      <label for="bokeh"></label>
+      <select id="bokeh" name="bokeh">
+        <option disabled selected value> -- select a Platform -- </option>
+        <option value="df_pc">Top5 publishers on PC</option>
+        <option value="df_ps4">Top5 publishers on PS4</option>
+        <option value="df_xone">Top5 publishers on XOne</option>
+        <option value="df_ns">Top5 publishers on NS</option>
+      </select>
+    </form> -->
   </div>
 
   <div id="Developer-Portal" class="tabcontent">
-    <h3>Game Sales Prediction</h3>
-    <p>Wondering about whether or not your game will sell well? Try it out on my predictive model.</p>
+    <h1>Game Sales Prediction</h1>
+    <p>
+    <h4>Developers, wondering about whether or not your game will sell well? Try it out on my predictive model.</h4>
+    Next let's talk about modeling.
+
+    <ul>
+      <li>To start, I will briefly mention the data processing step.<br>
+        One of the biggest challenge for this project is to fill in missing value in the dataset.<br>
+        The approach that I took is to replace missing value with the mean of each genre within each platform.<br><br>
+      </li>
+      <li>For the modeling step, I ran different types of regression models, ranging from linear regression to
+        randomforest regression.<br>
+        I found the best result so far using randomforest regression with cross validation. It gives me a R^2 score of
+        0.71 and MSE of 0.27.<br>
+        The model is yet to be improved as I learn more about advanced machine learning algorithms.<br><br></li>
+      <li>The finished product is a predictive indicator on what the game sales will be based on platform, genre,
+        publisher and rating.<br>
+        I included rating under the assumption that highly rated games tend to sell well.<br></li>
+    </ul>
+    </p>
     <!-- <form method='post' action="index"> -->
     <form method='post' action="" id="predictor_form">
       <label for="platform"></label>
@@ -163,8 +294,25 @@
   </div>
 
   <div id="Gamer-Island" class="tabcontent">
-    <h3>Game Recommendation</h3>
-    <p>Wondering about which game to play next? Try it out on my recommender system.</p>
+    <h1>Game Recommendation</h1>
+    <p>
+    <h4>Gamers, wondering about which game to play next? Try it out on my recommender system.</h4>
+    Finally, let's not forget our dear consumers, the gamers.<br>
+    <ul>
+      <li>Another important aspect is how do different platforms keep their players satisfied and stay within their
+        current
+        platform?<br><br>
+      </li>
+      <li>With the help of our solution provided to the developers, more popular games will be release on each platform
+        post
+        prediciton to attract more players for higher sales.<br>
+        As a result, gamers will constantly get recommendations on their next, even next next game.<br><br></li>
+      <li>The finished product is a content based game recomendation system built using jaccard similarity, it suggests
+        top 10
+        games to corresponding player.<br></li>
+    </ul>
+
+    </p>
     <form method='post' action="" id="recommender_form">
       <label for="platform_rec"></label>
       <select id="platform_rec" name="platform_rec">
@@ -233,6 +381,64 @@
           }
         });
     }
+
+    // change image accoring dropdown box
+    var imagesArray = [
+      '/static/plots/hardware_sales.png', // represents val 0,
+      '/static/plots/game_sales.png', // 1,
+      '/static/plots/yearly_sales.png', // 2,
+    ];
+
+    $('#changeImage').change(function () {
+      var val = parseInt($('#changeImage').val());
+      $('.plots').attr("src", imagesArray[val]);
+    });
+
+    // change image accoring dropdown box
+    var imagesList = [
+      '/static/datasets/dataset1.jpg', // represents val 0,
+      '/static/datasets/dataset2_1.jpg', // 1,
+      '/static/datasets/dataset2_2.jpg', // 2,
+    ];
+
+    $('#switchImage').change(function () {
+      var val = parseInt($('#switchImage').val());
+      $('.datasets').attr("src", imagesList[val]);
+    });
+
+    // change image accoring dropdown box
+    var genresList = [
+      '/static/top5_genres/genres_ps4.jpg', // represents val 0,
+      '/static/top5_genres/genres_xone.jpg', // 1,
+      '/static/top5_genres/genres_ns.jpg', // 2,
+      '/static/top5_genres/genres_pc.jpg', // 3,
+    ];
+
+    $('#top5_genres').change(function () {
+      var val = parseInt($('#top5_genres').val());
+      $('.bokeh').attr("src", genresList[val]);
+    });
+
+    // change image accoring dropdown box
+    var publishersList = [
+      '/static/top5_publishers/publishers_ps4.jpg', // represents val 0,
+      '/static/top5_publishers/publishers_xone.jpg', // 1,
+      '/static/top5_publishers/publishers_ns.jpg', // 2,
+      '/static/top5_publishers/publishers_pc.jpg', // 3,
+    ];
+
+    $('#top5_publishers').change(function () {
+      var val = parseInt($('#top5_publishers').val());
+      $('.bokeh1').attr("src", genresList[val]);
+    });
+
+
+    // // Submit form without submit button.
+    // function selectChange(val) {
+    //   //Set the value of action in action attribute of form element.
+    //   //Submit the form
+    //   $('#visualPlot').submit();
+    // };
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
