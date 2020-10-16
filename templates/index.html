@@ -2,8 +2,9 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="/static/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
+  <!-- <style>
     * {
       box-sizing: border-box
     }
@@ -14,6 +15,7 @@
       height: 100%;
       margin: 0;
       font-family: Arial;
+      background: black url('/static/img/image.jpg') repeat fixed center;
     }
 
     /* Style tab links */
@@ -39,14 +41,18 @@
       display: none;
       padding: 100px 20px;
       height: 100%;
+/* 
+      background-color: black;
+      background-image: url('/static/img/image.jpg'); */
+      /* background: black url('/static/img/image.jpg') repeat fixed center; */
     }
 
-    #About {
+    /* #About {
       background-color: black;
       background-image: url('/static/img/image.jpg');
     }
 
-    #Analysis-and-Visualization {
+    #Visualization {
       background-color: black;
       background-image: url('/static/img/image.jpg');
     }
@@ -59,7 +65,7 @@
     #Gamer-Island {
       background-color: black;
       background-image: url('/static/img/image.jpg');
-    }
+    } */
 
     #predictor_result {
       padding: 20px 20px;
@@ -68,7 +74,7 @@
     #recommender_result {
       padding: 20px 20px;
     }
-  </style>
+  </style> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 </head>
@@ -76,8 +82,7 @@
 <body>
 
   <button class="tablink" onclick="openPage('About', this, 'darkgray')" id="defaultOpen">About</button>
-  <button class="tablink" onclick="openPage('Analysis-and-Visualization', this, 'darkgray')">Analysis &
-    Visualization</button>
+  <button class="tablink" onclick="openPage('Visualization', this, 'darkgray')">Visualization</button>
   <button class="tablink" onclick="openPage('Developer-Portal', this, 'darkgray')">Developer Portal</button>
   <button class="tablink" onclick="openPage('Gamer-Island', this, 'darkgray')">Gamer Island</button>
 
@@ -114,7 +119,7 @@
     <img class="datasets" src='/static/datasets/dataset1.jpg' />
   </div>
 
-  <div id="Analysis-and-Visualization" class="tabcontent">
+  <div id="Visualization" class="tabcontent">
     <h1>Main Analysis and Visualization</h1>
     <p>
     <h4>To better understand the proposed problems. Let's first take a look at the current video game market.</h4>
