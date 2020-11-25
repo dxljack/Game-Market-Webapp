@@ -3,8 +3,9 @@
 
 <head>
   <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <style>
+  <style>
     * {
       box-sizing: border-box
     }
@@ -41,7 +42,7 @@
       display: none;
       padding: 100px 20px;
       height: 100%;
-/* 
+      /* 
       background-color: black;
       background-image: url('/static/img/image.jpg'); */
       /* background: black url('/static/img/image.jpg') repeat fixed center; */
@@ -74,7 +75,7 @@
     #recommender_result {
       padding: 20px 20px;
     }
-  </style> -->
+  </style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 </head>
@@ -94,21 +95,29 @@
     <ol>
       <li> For game developers, the question I would like to solve is what genre of games should they make, on which
         platform,
-        via which publisher and etc, in order to achieve high profitability.<br><br></li>
+        via which publisher and etc, in order to achieve high profitability.<br><br>
+      </li>
       <li> For consumers/gamers, the question I would like to solve is which game should they play next within their
         invested
-        platforms based on the game content and their preference.<br><br></li>
+        platforms based on the game content and their preference.<br><br>
+      </li>
     </ol>
+    </p>
 
+    <p>
     <h4>There are two datasets used in this project.</h4>
     <ul>
       <li>The first dataset was obtained from https://www.kaggle.com/ashaheedq/video-games-sales-2019, it contains a
-        list of video games with sales, critic and users score.<br><br></li>
+        list of video games with sales, critic and users score.<br><br>
+      </li>
       <li>The second dataset was scraped from https://www.vgchartz.com, it contains the hardware unit sales of current
-        generation consoles.<br><br></li>
-      <li>Check the pictures below for a sneak peek.<br></li>
+        generation consoles.<br><br>
+      </li>
+      <li>Check the pictures below for a sneak peek.<br><br>
+      </li>
     </ul>
     </p>
+
     <form method="" action="" name="datasets">
       <select id="switchImage">
         <option value="0" selected>Dataset1</option>
@@ -116,7 +125,22 @@
         <option value="2">Dataset2_2</option>
       </select>
     </form>
-    <img class="datasets" src='/static/datasets/dataset1.jpg' />
+    <img class="datasets" src='/static/datasets/dataset1.jpg' /><br><br>
+
+    <p>
+    <h4>Some shortcomings of this webapp.</h4>
+    <ul>
+      <li> For both sales prediction and games recommendation, I only used simple models for computational speed and
+        full models were included in the GitHub repository.<br><br>
+      </li>
+      <li> The attempt of deploying full models produced files with very large size and I did not figure out how to
+        properly handle them for the time being.<br><br>
+      </li>
+      <li> As a result, if I had deployed the full models, it will require more time to successfully predict sales and
+        recommend games which is not ideal for a webapp.<br><br>
+      </li>
+    </ul>
+    </p>
   </div>
 
   <div id="Visualization" class="tabcontent">
@@ -125,8 +149,9 @@
     <h4>To better understand the proposed problems. Let's first take a look at the current video game market.</h4>
     </p>
     <p>There are mainly four different platforms for the current generation, namely the PS4, XOne, NS and PC.<br>
-      Here are some plots showing the current market share in terms of hardware sales and game sales.<br>
-    </p>
+      Here are some plots showing the current market share in terms of hardware sales and game sales.
+    </p><br><br>
+
     <div style="display: flex;">
       <form method="" action="" name="plots">
         <select id="changeImage">
@@ -156,25 +181,28 @@
         </select>
       </form>
       <img class="bokeh_publisher" src='/static/top5_publishers/publishers_ps4.jpg' height="300 width=" 250" />
-
-    </div>
+    </div><br><br>
 
     <ul>
       <li>From early observations, for gaming consoles, we can see that PS4 is clearnly taking the lead in both hardware
         sales and game sales.<br>
         This suggests that the platform itself has a very strong player base. It is only logical
         for developers to stay with the more popular platform.<br>
-        And of course, this is not the whole story.<br><br></li>
+        And of course, this is not the whole story.<br><br>
+      </li>
       <li>Notice that we didnot take PC sales into account for hardware sales, this is because not everyone purchases PC
         for gaming.<br>
         However, we are able to explore game sales for PC. Surprisingly, from 2013 to 2018, total PC game
         sales surpassed console game sales.<br>
         In particular, there was a spike in 2014 PC game sales. Detailed reason is
-        yet to be determined, but multiple articles from 2014 and 2015 confirmed my discovery.<br><br></li>
+        yet to be determined, but multiple articles from 2014 and 2015 confirmed my discovery.<br><br>
+      </li>
       <li>Overall, I am more confident to say that PC and PS4 should probably be the first choice for developers to
-        develop and release their games on.<br></li>
+        develop and release their games on.<br><br>
+      </li>
     </ul>
-    <p>Now that we have found the prefered platforms for our developers, what's next?<br>
+    <p>
+    <h4>Now that we have found the prefered platforms for our developers, what's next?</h4>
 
     <ul>
       <li>I would like to find the most popular genres and publishers for each platform.<br><br></li>
@@ -224,15 +252,17 @@
         randomforest regression.<br>
         I found the best result so far using randomforest regression with cross validation. It gives me a R^2 score of
         0.71 and MSE of 0.27.<br>
-        The model is yet to be improved as I learn more about advanced machine learning algorithms.<br><br></li>
+        The model is yet to be improved as I learn more about advanced machine learning algorithms.<br><br>
+      </li>
       <li>The finished product is a predictive indicator on what the game sales will be based on platform, genre,
         publisher and rating.<br>
-        I included rating under the assumption that highly rated games tend to sell well.<br></li>
-      Now developers can actually see the differences among different choices they make.
+        I included rating under the assumption that highly rated games tend to sell well.<br>
+        Now developers can actually see the differences among different choices they make.<br><br>
+      </li>
     </ul>
     </p>
     <!-- <form method='post' action="index"> -->
-    <form method='post' action="" id="predictor_form">
+    <form method='post' action="" id="predictor_form" onsubmit="predictorSubmit(); return false;">
       <label for="platform"></label>
       <select id="platform" name="platform">
         <option disabled selected value> -- select a Platform -- </option>
@@ -308,20 +338,20 @@
       <li>Another important aspect to consider is how do players know which game to play next within their
         current platform?<br>
         This also motivates another business question, how does each platform keep their players satisfied and stay
-        within their current platforms?
-        <br><br>
+        within their current platforms?<br><br>
       </li>
       <li>With the help of our solution provided to the developers, more popular games will be released on each platform
         post prediciton to attract more players for higher sales.<br>
-        As a result, gamers will have access to a large collection of predicted popular games.<br><br></li>
+        As a result, gamers will have access to a large collection of predicted popular games.<br><br>
+      </li>
       <li>The finished product is a content based game recomendation system built using jaccard similarity, it suggests
         top 10 games to corresponding player.<br>
-      Notice that for each platform, the results returned are different.
+        Notice that for each platform, the results returned are different.<br><br>
       </li>
     </ul>
 
     </p>
-    <form method='post' action="" id="recommender_form">
+    <form method='post' action="" id="recommender_form" onsubmit="recommenderSubmit(); return false;">
       <label for="platform_rec"></label>
       <select id="platform_rec" name="platform_rec">
         <option disabled selected value> -- select a Platform -- </option>
@@ -336,7 +366,7 @@
       <br>
       <button type="button" class="recommender_button" onclick="recommenderSubmit()">Submit 👆</button>
     </form>
-    <div id="recommender_result"></div>
+    <img id="recommender_result" />
   </div>
 
   <script>
@@ -368,26 +398,64 @@
           url: "predictor",
           contentType: 'application/json',
           data: JSON.stringify(result),
-          success: function (data) {
-            document.getElementById('predictor_result').innerText = "Based on our prediction, your game sales will likely be: \n\n" + data + " million units";
+          success: function (response) {
+            var result = parseFloat(response);
+            var color;
+            if (result > 3) {
+              // green
+              color = 'green';
+            } else if (result > 1) {
+              // orange
+              color = 'orange';
+            } else {
+              // red
+              color = 'red';
+            }
+
+            document.getElementById('predictor_result').innerHTML = `<p>Based on our prediction, your game sales will likely be: <span><font color=" ${color} "> ${result} </font></span> million units<br><br> 
+            <i class="fa fa-square" style="color:green"></i> suggests good sales<br>
+            <i class="fa fa-square" style="color:orange"></i> suggests moderate sales<br>
+            <i class="fa fa-square" style="color:red"></i> suggests poor sales<br></p>`
           }
         });
     }
+
+    // function recommenderSubmit() {
+    //   var platform_rec = $('#platform_rec').val();
+    //   var name = $('#name').val();
+    //   var result = { platform_rec, name };
+    //   $.ajax
+    //     ({
+    //       type: "POST",
+    //       url: "recommender",
+    //       contentType: 'application/json',
+    //       data: JSON.stringify(result),
+    //       success: function (data) {
+    //         document.getElementById('recommender_result').innerText = "Based on our recommendation, here is a list of games you might like: \n\n" + data;
+    //       }
+    //     });
+    // }
 
     function recommenderSubmit() {
       var platform_rec = $('#platform_rec').val();
       var name = $('#name').val();
       var result = { platform_rec, name };
-      $.ajax
-        ({
-          type: "POST",
-          url: "recommender",
-          contentType: 'application/json',
-          data: JSON.stringify(result),
-          success: function (data) {
-            document.getElementById('recommender_result').innerText = "Based on our recommendation, here is a list of games you might like: \n\n" + data;
-          }
-        });
+      var url = "/recommender";
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(result)
+      })
+        .then(response => {
+          return response.blob();
+        })
+        .then(blob => {
+          // append it to your page
+          document.getElementById('recommender_result').src = URL.createObjectURL(blob);
+        })
     }
 
     // change image accoring dropdown box
