@@ -35,7 +35,6 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from wordcloud import WordCloud
 import seaborn as sns
-import networkx as nx
 
 app = Flask(__name__)
 
@@ -181,5 +180,5 @@ def recommend():
 #    return response
 
 
-if __name__ == '__main__':
-   app.run(port=33507)
+# if __name__ == '__main__':
+#    app.run(port=33507)
